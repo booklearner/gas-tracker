@@ -3,4 +3,5 @@ Tiny web app to get real-time gas prices for Ethereum (and maybe other blockchai
 
 ## Ethereum
 
-Documentation: https://ethereum.org/en/developers/docs/gas/
+- Documentation: https://ethereum.org/en/developers/docs/gas/
+- EIP-1559: https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1559.md
