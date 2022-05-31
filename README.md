@@ -1,5 +1,6 @@
 # gas-tracker
-Tiny web app to get real-time gas prices for Ethereum (and maybe other blockchains in the future?)
+
+Tiny API to get (close to) real-time gas prices on the Ethereum network.
 
 ## Ethereum
 
