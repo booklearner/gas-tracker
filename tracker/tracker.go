@@ -1,4 +1,4 @@
-package gastracker
+package tracker
 
 import (
 	"github.com/ybbus/jsonrpc"
