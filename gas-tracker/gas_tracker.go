@@ -1,7 +1,7 @@
 package gastracker
 
 import (
-	"github.com/ethereum/go-ethereum"
+	"github.com/ybbus/jsonrpc"
 )
 
 func main() {
