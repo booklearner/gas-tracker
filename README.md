@@ -11,6 +11,10 @@ Tiny API to get (close to) real-time gas prices on the Ethereum network.
 
 ## Usage
 
+### Configuration
+
+...
+
 ### CLI
 
 Build and run the CLI:
