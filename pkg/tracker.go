@@ -1,9 +1,5 @@
 package tracker
 
-import (
-	"github.com/ybbus/jsonrpc"
-)
-
-func main() {
-
+func GetGas() int {
+	return 0
 }
