@@ -11,26 +11,10 @@ Tiny API to get (close to) real-time gas prices on the Ethereum network.
 
 ## Usage
 
-### Configuration
-
-...
-
-### CLI
-
 Build and run the CLI:
 
 ```console
 ; go mod download  # fetch dependencies
 ; go build cmd/cli.go
 ; ./cli
-```
-
-### Server
-
-Build and run the Server:
-
-```console
-; go mod download  # fetch dependencies
-; go build cmd/server.go
-; ./server
 ```
