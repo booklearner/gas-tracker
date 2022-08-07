@@ -11,10 +11,30 @@ Tiny API to get (close to) real-time gas prices on the Ethereum network.
 
 ## Usage
 
-Build and run the CLI:
+Use `make` to fetch dependencies and build the application.
 
 ```console
-; go mod download  # fetch dependencies
-; go build cmd/cli.go
-; ./cli
+; make deps
+; make build
+; ./gas-tracker
+```
+
+Run the CLI (via `go run`):
+
+```console
+; make run
+```
+
+Run the server locally:
+
+```console
+; make server
+```
+
+Fetch dependencies and build the application without using `make`:
+
+```console
+; go mod download all  # fetch dependencies
+; go build -o gas-tracker cmd/cli.go
+; ./gas-tracker
 ```
