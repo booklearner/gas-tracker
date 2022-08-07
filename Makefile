@@ -15,9 +15,10 @@ run:
 server:
 	go run cmd/cli.go server
 
+fmt:
+	go fmt ./...
+
 clean:
 	go clean
 	rm ${BINARY_NAME}
 
-fmt:
-	go fmt ./...

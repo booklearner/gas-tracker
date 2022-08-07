@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+
 	"github.com/booklearner/gas-tracker/pkg"
 	"github.com/spf13/cobra"
 )
@@ -37,10 +38,22 @@ var ServerBindAddress string
 
 func main() {
 	var cmd = &cobra.Command{Use: "gas-tracker"}
-	cmd.PersistentFlags().StringVarP(&EthereumNodeAddress, "node", "n", "eth.booklearner.org", "address for the Ethereum Node to make the RPC calls to")
+	cmd.PersistentFlags().StringVarP(
+		&EthereumNodeAddress,
+		"node",
+		"n",
+		"eth.booklearner.org",
+		"address for the Ethereum Node to make the RPC calls to",
+	)
 	cmd.AddCommand(versionCmd)
 	cmd.AddCommand(gasCmd)
 	cmd.AddCommand(serverCmd)
-	serverCmd.Flags().StringVarP(&ServerBindAddress, "bind", "b", "0.0.0.0:5001", "local address and port to bind to when running as a daemon")
+	serverCmd.Flags().StringVarP(
+		&ServerBindAddress,
+		"bind",
+		"b",
+		"0.0.0.0:5001",
+		"local address and port to bind to when running as a daemon",
+	)
 	cmd.Execute()
 }
