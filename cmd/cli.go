@@ -21,7 +21,7 @@ var gasCmd = &cobra.Command{
 	Use:   "gas",
 	Short: "get current gas from the Ethereum network",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Fprintf(os.Stdout, tracker.GetGas())
+		fmt.Fprintf(os.Stdout, "%d\n", tracker.GetGas())
 	},
 }
 
@@ -56,6 +56,6 @@ func main() {
 		"0.0.0.0:5001",
 		"local address and port to bind to when running as a daemon",
 	)
-	viper.BindPFlag("bind", cmd.PersistentFlags().Lookup("bind"))
+	viper.BindPFlag("bind", serverCmd.Flags().Lookup("bind"))
 	cmd.Execute()
 }
