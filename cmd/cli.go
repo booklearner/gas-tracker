@@ -2,9 +2,11 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/booklearner/gas-tracker/pkg"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 var versionCmd = &cobra.Command{
@@ -19,8 +21,7 @@ var gasCmd = &cobra.Command{
 	Use:   "gas",
 	Short: "get current gas from the Ethereum network",
 	Run: func(cmd *cobra.Command, args []string) {
-		flags := cmd.Flags()
-		tracker.GetGas(*flags)
+		fmt.Fprintf(os.Stdout, tracker.GetGas())
 	},
 }
 
@@ -28,8 +29,7 @@ var serverCmd = &cobra.Command{
 	Use:   "server",
 	Short: "run the gas tracker as a daemon, exposing simple API to get gas prices",
 	Run: func(cmd *cobra.Command, args []string) {
-		flags := cmd.Flags()
-		tracker.RunServer(*flags)
+		tracker.RunServer()
 	},
 }
 
@@ -45,6 +45,7 @@ func main() {
 		"eth.booklearner.org",
 		"address for the Ethereum Node to make the RPC calls to",
 	)
+	viper.BindPFlag("node", cmd.PersistentFlags().Lookup("node"))
 	cmd.AddCommand(versionCmd)
 	cmd.AddCommand(gasCmd)
 	cmd.AddCommand(serverCmd)
@@ -55,5 +56,6 @@ func main() {
 		"0.0.0.0:5001",
 		"local address and port to bind to when running as a daemon",
 	)
+	viper.BindPFlag("bind", cmd.PersistentFlags().Lookup("bind"))
 	cmd.Execute()
 }
