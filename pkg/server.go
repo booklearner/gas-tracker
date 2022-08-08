@@ -20,7 +20,10 @@ func RunServer() {
 		w.Header().Set("Content-Type", "application/json")
 
 		gas := Response{Gas: GetGas(), Node: viper.GetString("node")}
-		resp, _ := json.Marshal(gas)
+		resp, err := json.Marshal(gas)
+		if err != nil {
+			w.WriteHeader(500)
+		}
 
 		fmt.Fprintf(w, string(resp))
 	})
