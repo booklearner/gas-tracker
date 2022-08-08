@@ -2,21 +2,18 @@ package tracker
 
 import (
 	"fmt"
+	"net/http"
 
-	"github.com/spf13/pflag"
+	"github.com/spf13/viper"
 )
 
-func RunServer(f pflag.FlagSet) {
-	node, err := f.GetString("node")
-	if err != nil {
-		panic("node flag not set")
-	}
+func RunServer() {
+	bind := viper.GetString("bind")
 
-	bind, err := f.GetString("bind")
-	if err != nil {
-		panic("bind address not set")
-	}
+	http.HandleFunc("/gas", func(w http.ResponseWriter, r *http.Request) {
+		gas := GetGas()
+		fmt.Fprintf(w, gas)
+	})
 
-	fmt.Println(bind)
-	fmt.Println(node)
+	http.ListenAndServe(bind, nil)
 }
