@@ -2,7 +2,6 @@ package tracker
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 
 	"github.com/spf13/viper"
@@ -19,13 +18,15 @@ func RunServer() {
 	http.HandleFunc("/gas", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 
-		gas := Response{Gas: GetGas(), Node: viper.GetString("node")}
-		resp, err := json.Marshal(gas)
+		resp := Response{Gas: GetGas(), Node: viper.GetString("node")}
+		json, err := json.Marshal(resp)
+
 		if err != nil {
-			w.WriteHeader(500)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
 		}
 
-		fmt.Fprintf(w, string(resp))
+		w.Write(json)
 	})
 
 	http.ListenAndServe(bind, nil)
