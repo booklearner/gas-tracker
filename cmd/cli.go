@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/booklearner/gas-tracker/pkg"
+	tracker "github.com/booklearner/gas-tracker/pkg"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
