@@ -12,22 +12,26 @@ type Response struct {
 	Node string `json:"node"`
 }
 
+func gasHandlerFunc(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	resp := Response{
+		Gas:  GetGas(),
+		Node: viper.GetString("node"),
+	}
+	json, err := json.Marshal(resp)
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.Write(json)
+	return
+}
+
 func RunServer() {
+	http.HandleFunc("/gas", http.HandlerFunc(gasHandlerFunc))
 	bind := viper.GetString("bind")
-
-	http.HandleFunc("/gas", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-
-		resp := Response{Gas: GetGas(), Node: viper.GetString("node")}
-		json, err := json.Marshal(resp)
-
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
-
-		w.Write(json)
-	})
-
 	http.ListenAndServe(bind, nil)
 }
