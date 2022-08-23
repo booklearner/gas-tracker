@@ -29,7 +29,7 @@ func InitClient() (*Client, error) {
 }
 
 func (client *Client) Close() {
-	client.Close()
+	client.ethClient.Close()
 }
 
 func (client *Client) GetGas() (Gas, error) {
