@@ -28,9 +28,9 @@ var gasCmd = &cobra.Command{
 		}
 		fmt.Fprintf(
 			os.Stdout,
-			"Block Number: %d\nGas Price:    %d\nPending TXs:  %d\n",
+			"Block Number: %d\nGas Price:    %d gwei\nPending TXs:  %d\n",
 			g.BlockNumber,
-			g.GasPrice,
+			g.PriceGwei,
 			g.PendingTransactions,
 		)
 	},

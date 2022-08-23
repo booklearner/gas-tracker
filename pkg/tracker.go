@@ -2,13 +2,15 @@ package tracker
 
 import (
 	"context"
+	"math/big"
 
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/spf13/viper"
 )
 
 type Gas struct {
-	GasPrice            int64  `json:"gas_price"`
+	PriceGwei        int64  `json:"gas_price_gwei"`
+	PriceWei         int64  `json:"gas_price_wei"`
 	BlockNumber         uint64 `json:"block_number"`
 	PendingTransactions uint   `json:"pending_transactions"`
 }
@@ -46,7 +48,8 @@ func GetGas() (Gas, error) {
 	}
 
 	g.BlockNumber = bn
-	g.GasPrice = gp.Int64()
+	g.PriceGwei = new(big.Int).Div(gp, big.NewInt(1_000_000_000)).Int64()
+	g.PriceWei = gp.Int64()
 	g.PendingTransactions = tc
 
 	return g, nil
