@@ -5,7 +5,6 @@ import (
 	"math/big"
 
 	"github.com/ethereum/go-ethereum/ethclient"
-	"github.com/spf13/viper"
 )
 
 type Gas struct {
@@ -15,24 +14,9 @@ type Gas struct {
 	PendingTransactions uint   `json:"pending_transactions"`
 }
 
-func initClient() (*ethclient.Client, error) {
-	node := viper.GetString("node")
-	c, err := ethclient.Dial(node)
-
-	if err != nil {
-		return nil, err
-	}
-	return c, nil
-}
-
-func GetGas() (Gas, error) {
-	g := Gas{}
-
+func GetGas(c *ethclient.Client) (Gas, error) {
 	ctx := context.Background()
-	c, err := initClient()
-	if err != nil {
-		return g, err
-	}
+	g := Gas{}
 
 	bn, err := c.BlockNumber(ctx)
 	if err != nil {

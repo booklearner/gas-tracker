@@ -22,7 +22,11 @@ var gasCmd = &cobra.Command{
 	Use:   "gas",
 	Short: "get current gas from the Ethereum network",
 	Run: func(cmd *cobra.Command, args []string) {
-		g, err := tracker.GetGas()
+		c, err := tracker.InitClient()
+		if err != nil {
+			log.Fatal(err)
+		}
+		g, err := tracker.GetGas(c)
 		if err != nil {
 			log.Fatal(err)
 		}
