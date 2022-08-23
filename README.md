@@ -42,7 +42,7 @@ Run the CLI to fetch some numbers from the Ethereum network:
 
 ```console
 ; ./gas-tracker gas
-Block Number: 15397905
-Gas Price:    19903429422
-Pending TXs:  319
+Block Number: 15398157
+Gas Price:    13 gwei
+Pending TXs:  261
 ```
