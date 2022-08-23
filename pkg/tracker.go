@@ -9,8 +9,8 @@ import (
 )
 
 type Gas struct {
-	PriceGwei        int64  `json:"gas_price_gwei"`
-	PriceWei         int64  `json:"gas_price_wei"`
+	PriceGwei           int64  `json:"gas_price_gwei"`
+	PriceWei            int64  `json:"gas_price_wei"`
 	BlockNumber         uint64 `json:"block_number"`
 	PendingTransactions uint   `json:"pending_transactions"`
 }
