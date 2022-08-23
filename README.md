@@ -1,6 +1,6 @@
 # gas-tracker
 
-Tiny API to get (close to) real-time gas prices on the Ethereum network.
+Tiny API and CLI utility to get gas prices on the Ethereum network
 
 ## Ethereum
 
@@ -36,5 +36,13 @@ Fetch dependencies and build the application without using `make`:
 ```console
 ; go mod download all  # fetch dependencies
 ; go build -o gas-tracker cmd/cli.go
-; ./gas-tracker
+```
+
+Run the CLI to fetch some numbers from the Ethereum network:
+
+```console
+; ./gas-tracker gas
+Block Number: 15397905
+Gas Price:    19903429422
+Pending TXs:  319
 ```
