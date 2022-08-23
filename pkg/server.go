@@ -8,19 +8,23 @@ import (
 )
 
 type Response struct {
-	Gas  int    `json:"gas"`
 	Node string `json:"node"`
+	Gas  Gas    `json:"gas"`
 }
 
 func gasHandlerFunc(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
+	g, err := GetGas()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 	resp := Response{
-		Gas:  GetGas(),
+		Gas:  g,
 		Node: viper.GetString("node"),
 	}
 	json, err := json.Marshal(resp)
-
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

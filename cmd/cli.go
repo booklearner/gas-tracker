@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	tracker "github.com/booklearner/gas-tracker/pkg"
@@ -21,7 +22,17 @@ var gasCmd = &cobra.Command{
 	Use:   "gas",
 	Short: "get current gas from the Ethereum network",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Fprintf(os.Stdout, "%d\n", tracker.GetGas())
+		g, err := tracker.GetGas()
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Fprintf(
+			os.Stdout,
+			"Block Number: %d\nGas Price:    %d\nPending TXs:  %d\n",
+			g.BlockNumber,
+			g.GasPrice,
+			g.PendingTransactions,
+		)
 	},
 }
 
@@ -42,7 +53,7 @@ func main() {
 		&EthereumNodeAddress,
 		"node",
 		"n",
-		"eth.booklearner.org",
+		"https://cloudflare-eth.com",
 		"address for the Ethereum Node to make the RPC calls to",
 	)
 	viper.BindPFlag("node", cmd.PersistentFlags().Lookup("node"))
