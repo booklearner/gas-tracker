@@ -18,3 +18,7 @@ func InitClient() error {
 	client = c
 	return nil
 }
+
+func CloseClient() {
+	client.Close()
+}

@@ -40,6 +40,7 @@ func RunServer() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	defer CloseClient()
 	http.HandleFunc("/gas", http.HandlerFunc(gasHandlerFunc))
 	bind := viper.GetString("bind")
 	http.ListenAndServe(bind, nil)

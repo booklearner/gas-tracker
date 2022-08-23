@@ -26,6 +26,7 @@ var gasCmd = &cobra.Command{
 		if err != nil {
 			log.Fatal(err)
 		}
+		defer tracker.CloseClient()
 
 		g, err := tracker.GetGas()
 		if err != nil {
